@@ -1,0 +1,19 @@
+{% extends 'tasks/base.html' %}
+{% block title %}Delete Page{% endblock title %}
+{% block content %}
+<div class="container delete-main-container">
+    <div>
+        <p>Are you sure you want to delete "{{item}}"?</p>
+    </div>    
+    <div class="cancel">
+        <a href="{% url 'taskList' %}"><button class="no-btn">No</button></a>
+    </div>
+    <div class="submit-yes">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input class="submit-btn-3" type="submit" name="Confirm" value="Yes">
+            
+        </form>
+    </div>    
+</div>    
+{% endblock content %}

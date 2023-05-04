@@ -1,0 +1,28 @@
+{% extends 'tasks/base.html' %}
+    {% block title %}Tasks{% endblock title %}
+    {% block content %}
+        <div class="container main-container">
+            <form method="POST" action="/">
+                {% csrf_token %}
+                <div class="">
+                    <span><input type="text" name="title" maxlength="200" required="" id="id_title" placeholder="                                                  Add new task here"></span>
+                    <input class="submit-btn" type="submit" name="Create List" placeholder="Add new task" >
+                </div>
+            </form>
+            {% for task in tasks %}
+                <div class="container tasks">
+                    <div class="button">
+                        <a href="{% url 'updateTask' task.id %}"><button class="btn btn-primary">Update</button></a>
+                        <a href="{% url 'delete' task.id %}"><button class="btn btn-danger">Delete</button></a>
+                    </div>
+                    <div class="task">
+                        {% if task.complete == True %}
+                        <strike>{{task}}</strike>
+                        {% else %}
+                        <span>{{task}}</span>
+                        {% endif %}
+                    </div>    
+                </div>
+            {% endfor %}
+        </div>    
+    {% endblock content %}
